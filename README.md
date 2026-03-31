@@ -1,0 +1,2 @@
+# MyLog
+Log Library
