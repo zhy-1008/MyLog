@@ -9,13 +9,7 @@
 
 
 使用：
-通过调用封装好的宏函数，来进行不同日志等级的输出；
-默认输出到控制台，可通过`Logger::get_instace().add_file_sink(文件路径)`来配置日志文件的位置（绝对路径）;
-可通过`Logger::get_instace().set_level()`来设置日志的输出等级；
-
-
-
-额外功能：
-异步日志，
-线程安全
-日志轮转，
+使用 `LOG_INFO() << "message";` 这样的语句记录日志。
+默认输出到控制台。调用 `Logger::get_instance().add_file_sink(文件路径)` 可追加写入日志文件。打开失败时会抛出包含文件路径的 `std::ios_base::failure`。
+调用 `Logger::get_instance().set_level(级别)` 可设置最低输出级别。低于该级别时，日志宏会跳过 `<<` 右侧表达式的求值。
+调用 `Logger::get_instance().flush()` 可刷新所有输出。刷新失败时会向调用方抛出异常，日志宏提交消息时遇到的输出错误会通过标准错误流报告。
